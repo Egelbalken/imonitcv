@@ -1,0 +1,37 @@
+{% extends 'main.html' %}
+
+
+{% block content %}
+<!-- Main Section -->
+<main class="inbox my-xl auth">
+  <div class="content-box">
+    <ul class="messages">
+      <a style="margin-top: 30px; margin-left:20px" class="backButton" href="{% url 'inbox' %}"><i class="zmdi zmdi-arrow-left zmdi-hc-2x"></i></a>
+      <div class="auth__header text-center">
+          <i class="zmdi zmdi-account-box-mail zmdi-hc-5x"></i>
+          <br>
+            <h3>Message Inbox</h3>
+            <p>Here are your messages</p>
+            <br>
+            <hr>
+        <h3 class="inbox__title">New Messages(<span>{{unreadCount}}</span>)</h3>
+        <br>
+      </div>
+        {% for message in messageRequests %}
+        {% if message.is_read == False %}
+        <li class="message message--unread">
+          {% else %}
+          <li class="message message--read">
+            {% endif %}
+            
+            <a href="{% url 'message' message.id %}">
+              <span class="message__author">{{message.name}}</span>
+              <span class="message__subject">{{message.subject|slice:'20'}}...</span>
+              <span class="message__date">{{message.created}}</span>
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+    </div>
+  </main>
+  {% endblock  %}

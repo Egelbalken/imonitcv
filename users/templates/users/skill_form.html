@@ -1,0 +1,50 @@
+{% extends 'main.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<main class="auth layout">
+    <div class="card">
+        <a class="backButton" href="{% url 'account' %}"><i class="zmdi zmdi-arrow-left zmdi-hc-2x"></i></a>
+        <br>
+        <div class="auth__header text-center">
+            <i class="zmdi zmdi-edit zmdi-hc-5x"></i>
+            <!--
+                <a href="/">
+                    <img src="{% static 'images/icon.svg' %}" alt="icon" />
+                </a>
+            -->
+            {% if page == 'create' %}
+            <h3>New Skill</h3>
+            <p>Add a new skill to your account</p>
+            {% else %}
+            <h3>Update Skill</h3>
+            <p>Update your active skill to your account</p>
+            {% endif %}
+        </div>
+        
+        <form method="POST" action='', enctype="multipart/form-data" class="form auth__form">
+            <!-- Input:Text -->
+            {% csrf_token %}
+            
+            {% for field in form %}
+            <div class="form__field">
+                {{field.label}}
+                <br>
+                {{field}}
+            </div>
+            {% endfor %}
+            
+            <div class="auth__actions">
+                <input class="btn btn--sub btn--lg" type="submit" value="Submit" />
+            </div>
+        </form>
+    </div>
+</main>
+
+
+{% endblock content %}
+
+
+

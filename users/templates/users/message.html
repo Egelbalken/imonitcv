@@ -1,0 +1,39 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<!-- Main Section -->
+<main class="messagePage my-xl auth">
+  <div class="content-box">
+    <div class="message">
+      <div class="auth__header text-center">
+        <a class="backButton" href="{% url 'inbox' %}"><i class="zmdi zmdi-arrow-left zmdi-hc-2x"></i></a>
+        <i class="zmdi zmdi-account-box-mail zmdi-hc-5x"></i>
+        {% if unreadCount == True %}
+        <h3>Message new Inbox</h3>
+        <p>This message is a new one from {{message.name}}.</p>
+        {% else %}
+        <h3>Message Inbox</h3>
+        <p>This message is an old one from {{message.name}}.</p>
+        {% endif %}
+        <br>
+        <hr>
+      </div>
+      <h2 class="message__subject">{{message.subject}}</h4>
+        
+        {% if message.sender %}
+        <a href="{% url 'user-profile' message.sender.id %}" class="message__author">{{message.name}}</a>
+        {% else %}
+        <!-- If we dont have a user. -->
+        <p><b>{{message.name}}</b></p>
+        {% endif %}
+
+        <p class="message__date">{{message.created}}</p>
+        <div class="message__body">
+          {{message.body|linebreaks}}
+        </div>
+      </div>
+    </div>
+  </main>
+
+  {% endblock content %}

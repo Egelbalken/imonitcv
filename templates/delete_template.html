@@ -1,0 +1,31 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+
+<!-- Main Section -->
+<main class="formPage my-xl">
+    <div class="layout auth">
+        <div class="content-box">
+            <div class="formWrapper">
+                
+                <br>
+                <div class="auth__header text-center ">
+                    
+                    <i class="zmdi zmdi-delete zmdi-hc-5x"></i>
+                    
+                    <form class="form" action="" method="POST">
+                        {% csrf_token %}
+                        <p>Are you sure you want to delete "{{object}}"?</p>
+                        
+                        <a class="btn btn--sub btn--lg  my-md" href="{{request.GET.next}}">Go Back</a>
+                        
+                        <input style="background:red" class="btn btn--sub btn--lg  my-md" type="submit" value="Confirm" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+{% endblock %}

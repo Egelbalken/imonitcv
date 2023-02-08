@@ -1,0 +1,41 @@
+{% extends 'main.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<main class="auth layout">
+    <div class="card">
+        <a class="backButton" href="{% url 'account' %}"><i class="zmdi zmdi-arrow-left zmdi-hc-2x"></i></a>
+        <br>
+        <div class="auth__header text-center">
+            <i class="zmdi zmdi-edit zmdi-hc-5x"></i>
+            <!--
+                <a href="/">
+                    <img src="{% static 'images/icon.svg' %}" alt="icon" />
+                </a>
+            -->
+            <h3>Account Editor</h3>
+            <p>Edit your account</p>
+        </div>
+        
+        <form method="POST" action='{% url 'edit-account' %}', enctype="multipart/form-data" class="form auth__form">
+            <!-- Input:Text -->
+            {% csrf_token %}
+            
+            <div class="form__field">
+                {{form}}
+            </div>
+            
+            <div class="auth__actions">
+                <input class="btn btn--sub btn--lg" type="submit" value="Submit" />
+            </div>
+        </form>
+    </div>
+</main>
+
+
+{% endblock content %}
+
+
+
